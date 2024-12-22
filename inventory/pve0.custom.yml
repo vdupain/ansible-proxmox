@@ -1,0 +1,3 @@
+proxmox_nodes:
+  vars:
+    ansible_user: root

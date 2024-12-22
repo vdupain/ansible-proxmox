@@ -1,0 +1,6 @@
+---
+- name: Start scaphandre
+  ansible.builtin.systemd:
+    name: scaphandre
+    state: started
+    enabled: true

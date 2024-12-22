@@ -1,0 +1,10 @@
+[Unit]
+Description=Scaphandre  service
+
+[Service]
+User=root
+Group=root
+ExecStart=/usr/bin/scaphandre prometheus
+
+[Install]
+WantedBy=multi-user.target

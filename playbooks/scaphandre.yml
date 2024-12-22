@@ -1,0 +1,5 @@
+---
+- name: Scaphandre Playbook
+  hosts: proxmox_nodes
+  roles:
+    - scaphandre

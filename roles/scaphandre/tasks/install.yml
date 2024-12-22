@@ -1,0 +1,28 @@
+---
+- name: Check if scaphandre is already installed
+  ansible.builtin.command: dpkg-query -W scaphandre
+  register: scaphandre_check_deb
+  failed_when: scaphandre_check_deb.rc > 1
+  changed_when: scaphandre_check_deb.rc == 1
+
+- name: Download scaphandre
+  ansible.builtin.get_url:
+    url: "{{ scaphandre_package_url }}"
+    dest: "/tmp/{{ scaphandre_package_name }}"
+    mode: '0644'
+  when: scaphandre_check_deb.rc == 1
+
+- name: Install scaphandre
+  ansible.builtin.apt:
+    deb: "/tmp/{{ scaphandre_package_name }}"
+  when: scaphandre_check_deb.rc == 1
+
+- name: Copy systemd service file
+  ansible.builtin.copy:
+    src: scaphandre.service
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Start scaphandre
