@@ -24,5 +24,6 @@
     owner: root
     group: root
     mode: '0644'
+  changed_when: true
   notify:
-    - Start scaphandre
+    - Restart scaphandre

@@ -4,7 +4,7 @@ Description=Scaphandre  service
 [Service]
 User=root
 Group=root
-ExecStart=/usr/bin/scaphandre prometheus
+ExecStart=/usr/bin/scaphandre prometheus -p 9898
 
 [Install]
 WantedBy=multi-user.target

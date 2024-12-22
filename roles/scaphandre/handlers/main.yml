@@ -1,6 +1,7 @@
 ---
-- name: Start scaphandre
+- name: Restart scaphandre
   ansible.builtin.systemd:
     name: scaphandre
-    state: started
+    state: restarted
+    daemon_reload: true
     enabled: true
