@@ -20,6 +20,8 @@ ansible-inventory -i inventory/pve0.proxmox.yml -i inventory/pve0.custom.yml --l
 ansible-inventory -i inventory/pve0.proxmox.yml -i inventory/pve0.custom.yml --list --yaml | grep -B 1 ansible_host
 ```
 
+## Using Ansible
+
 ### Using ansible with dynamic inventory
 
 ```bash
@@ -42,7 +44,13 @@ ansible all --list-hosts
 ansible-playbook site.yaml
 ```
 
-### Learn more
+## Password Encryption with ansible-vault
+
+```bash
+ansible-vault encrypt_string 'azerty123' --name 'my-secret'
+```
+
+## Learn more
 
 * <https://docs.ansible.com/ansible/latest/collections/community/general/proxmox_inventory.html>
 * <https://www.robertgatti.com/posts/proxmox-ansible-plugin/>
