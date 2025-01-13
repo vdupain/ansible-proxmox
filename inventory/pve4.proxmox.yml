@@ -1,0 +1,29 @@
+plugin: community.general.proxmox
+url: https://pve4.vincentdupain.com:8006
+validate_certs: true
+want_facts: true
+
+# Instead of login with password, proxmox supports api token authentication since release 6.2.
+user: ansible@pve
+token_id: ansible
+token_secret: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          62666431343631333362616239636337346166663635353539333435663866383337623331646262
+          6230353837656265663339613039366332326665303533390a663165383531396630623762323333
+          66376461356234643964383265356538323036323463643731396531343936643237663564356332
+          3731396436383732350a323766656138346337666263383130353462373538616465306337653034
+          34663839336537653137393038613766623733333031666564343238346163346433383230613638
+          6234353435633161326665373162616165616563343961316533
+
+# Group vms by tags for reference in playbooks.
+keyed_groups:
+  - key: proxmox_tags_parsed
+    separator: ""
+    prefix: tag_
+
+want_proxmox_nodes_ansible_host: true
+
+compose:
+#  ansible_host: proxmox_name + ".mydomain.com"
+  ansible_host: proxmox_agent_interfaces | selectattr('name', 'equalto', 'eth0') | map(attribute='ip-addresses') | flatten | first | split('/') | first
+#  ansible_host: proxmox_net0["ip"].split('/')[0] if 'ip' in proxmox_net0 else proxmox_agent_interfaces[1]["ip-addresses"][0].split('/')[0]
