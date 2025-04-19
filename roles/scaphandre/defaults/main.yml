@@ -1,4 +1,4 @@
 ---
-scaphandre_package_version: v1.0.0
+scaphandre_package_version: v1.0.2
 scaphandre_package_name: scaphandre_{{ scaphandre_package_version }}-deb12_amd64.deb
 scaphandre_package_url: https://github.com/hubblo-org/scaphandre/releases/download/{{ scaphandre_package_version }}/{{ scaphandre_package_name }}
