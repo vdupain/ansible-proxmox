@@ -50,6 +50,12 @@ ansible-playbook site.yaml
 ansible-vault encrypt_string 'azerty123' --name 'my-secret'
 ```
 
+## Install deps
+
+```bash
+ansible-galaxy install -r requirements.yml
+```
+
 ## Learn more
 
 * <https://docs.ansible.com/ansible/latest/collections/community/general/proxmox_inventory.html>
