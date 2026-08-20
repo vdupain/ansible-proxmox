@@ -1,6 +1,4 @@
 ---
-dependencies: []
-
 galaxy_info:
   author: vdupain
   description: Grafana monitoring stack wrapper role — installs and configures Grafana via grafana.grafana collection

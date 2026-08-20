@@ -2,29 +2,3 @@
 - name: Install and configure Grafana via grafana.grafana.grafana
   ansible.builtin.include_role:
     name: grafana.grafana.grafana
-
-- name: Ensure dashboard provisioning directory exists
-  ansible.builtin.file:
-    path: "{{ grafana_data_dir }}/dashboards"
-    state: directory
-    owner: grafana
-    group: grafana
-    mode: '0755'
-
-- name: Copy static Prometheus datasource provisioning file
-  ansible.builtin.copy:
-    src: provisioning/datasources/prometheus.yaml
-    dest: /etc/grafana/provisioning/datasources/prometheus.yaml
-    owner: root
-    group: grafana
-    mode: '0640'
-  notify: restart grafana
-
-- name: Copy static dashboard provisioning file
-  ansible.builtin.copy:
-    src: provisioning/dashboards/dashboards.yaml
-    dest: /etc/grafana/provisioning/dashboards/dashboards.yaml
-    owner: root
-    group: grafana
-    mode: '0640'
-  notify: restart grafana
