@@ -1,3 +1,4 @@
 .vault_password
 .envrc
+roles/cloudalchemy.grafana/
 roles/grafana.grafana/
