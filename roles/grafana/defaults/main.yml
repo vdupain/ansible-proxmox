@@ -23,18 +23,13 @@ grafana_ini_default:
   auth:
     anonymous:
       enabled: false
-  dashboards:
-    default_home_dashboard_path: ""
-    git_repositories:
-      - url: "https://github.com/vdupain/grafana-dashboards.git"
-        branch: main
 
 # Datasource — Prometheus
 grafana_datasources:
   - name: Prometheus
     type: prometheus
     access: proxy
-    url: "http://prometheus:9090"
+    url: "http://192.168.50.249:9090"
     isDefault: true
     editable: false
 

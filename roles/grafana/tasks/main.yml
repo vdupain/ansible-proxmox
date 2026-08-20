@@ -2,3 +2,36 @@
 - name: Install and configure Grafana via grafana.grafana.grafana
   ansible.builtin.include_role:
     name: grafana.grafana.grafana
+
+- name: Ensure dashboard provisioning directory exists
+  ansible.builtin.file:
+    path: /var/lib/grafana/dashboards
+    state: directory
+    owner: grafana
+    group: grafana
+    mode: '0755'
+
+- name: Clone grafana-dashboards repository
+  ansible.builtin.git:
+    repo: "https://github.com/vdupain/grafana-dashboards.git"
+    dest: /var/lib/grafana/dashboards
+    version: main
+    force: true
+  notify: restart grafana
+
+- name: Create dashboard provisioning config
+  ansible.builtin.copy:
+    dest: "/etc/grafana/provisioning/dashboards/ansible.yml"
+    content: |
+      apiVersion: 1
+      providers:
+        - name: 'default'
+          orgId: 1
+          folder: ''
+          type: file
+          options:
+            path: /var/lib/grafana/dashboards
+    owner: root
+    group: grafana
+    mode: '0640'
+  notify: restart grafana
