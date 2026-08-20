@@ -4,6 +4,9 @@ proxmox_nodes:
 tag_ubuntu:
   vars:
     ansible_user: root
+tag_monitoring-grafana:
+  vars:
+    ansible_user: root
     # ansible_become_pass: !vault |
     #           $ANSIBLE_VAULT;1.1;AES256
     #           38303463336363613631303463643363336631663766393930333833316136643262353837353064

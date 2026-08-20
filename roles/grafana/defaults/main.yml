@@ -1,0 +1,62 @@
+---
+# Grafana version
+grafana_version: latest
+
+# Server settings
+grafana_address: 0.0.0.0
+grafana_port: 3000
+grafana_url: "http://{{ ansible_host | default(inventory_hostname) }}:{{ grafana_port }}"
+grafana_domain: "{{ ansible_host | default(inventory_hostname) }}"
+
+grafana_server:
+  protocol: http
+  enforce_domain: false
+  enable_gzip: false
+  router_logging: false
+  serve_from_sub_path: false
+
+# Security
+grafana_security:
+  admin_user: admin
+
+# Users
+grafana_users:
+  allow_sign_up: false
+  auto_assign_org_role: Viewer
+  default_theme: dark
+
+# Authentication — anonymous disabled
+grafana_auth:
+  anonymous:
+    enabled: false
+
+# Datasource — Prometheus
+grafana_datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: "http://192.168.50.249:9090"
+    isDefault: true
+
+# Dashboard provisioning — the dashboards directory
+grafana_dashboards_dir: "dashboards"
+
+# Use provisioning (Grafana >= 5.0)
+grafana_use_provisioning: true
+grafana_provisioning_synced: false
+
+# Logs and data dirs
+grafana_logs_dir: /var/log/grafana
+grafana_data_dir: /var/lib/grafana
+
+# Plugins — none by default
+grafana_plugins: []
+
+# Alert notifications — none by default
+grafana_alert_notifications: []
+
+# API keys — none by default
+grafana_api_keys: []
+
+# Environment variables
+grafana_environment: {}

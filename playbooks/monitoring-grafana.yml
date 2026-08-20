@@ -1,0 +1,5 @@
+---
+- name: Grafana monitoring playbook
+  hosts: tag_monitoring-grafana
+  roles:
+    - grafana

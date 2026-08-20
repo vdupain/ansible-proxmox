@@ -1,0 +1,15 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: vdupain
+  description: Grafana monitoring stack wrapper role — installs and configures Grafana via cloudalchemy.grafana
+  license: MIT
+  min_ansible_version: '2.14'
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
