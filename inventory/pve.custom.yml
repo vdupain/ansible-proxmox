@@ -4,7 +4,7 @@ proxmox_nodes:
 tag_ubuntu:
   vars:
     ansible_user: root
-tag_monitoring-grafana:
+tag_monitoring_grafana:
   vars:
     ansible_user: root
     # ansible_become_pass: !vault |
