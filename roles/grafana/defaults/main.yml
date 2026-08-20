@@ -4,10 +4,6 @@ grafana_version: latest
 
 # Server settings
 grafana_ini_default:
-  instance_name: "{{ ansible_facts['fqdn'] | default(ansible_host) | default(inventory_hostname) }}"
-  paths:
-    logs: /var/log/grafana
-    data: /var/lib/grafana
   server:
     http_addr: "0.0.0.0"
     http_port: 3000
@@ -19,6 +15,7 @@ grafana_ini_default:
     serve_from_sub_path: false
   security:
     admin_user: admin
+    admin_password: admin
   users:
     allow_sign_up: false
     auto_assign_org_role: Viewer
@@ -44,10 +41,6 @@ grafana_datasources:
 # Use provisioning
 grafana_use_provisioning: true
 grafana_provisioning_synced: false
-
-# Logs and data dirs
-grafana_logs_dir: /var/log/grafana
-grafana_data_dir: /var/lib/grafana
 
 # Plugins — none by default
 grafana_plugins: []
