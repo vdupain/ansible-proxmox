@@ -1,7 +1,7 @@
 ---
-- name: Install and configure Grafana via cloudalchemy.grafana
+- name: Install and configure Grafana via grafana.grafana.grafana
   ansible.builtin.include_role:
-    name: cloudalchemy.grafana
+    name: grafana.grafana.grafana
 
 - name: Ensure dashboard provisioning directory exists
   ansible.builtin.file:

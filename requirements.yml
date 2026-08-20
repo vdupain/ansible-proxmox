@@ -1,5 +1,3 @@
 collections:
   - prometheus.prometheus
-
-roles:
-  - src: cloudalchemy.grafana
+  - grafana.grafana
