@@ -1,0 +1,14 @@
+scrape_configs:
+  - job_name: openwrt
+    static_configs:
+      - targets:
+{% for target in openwrt_targets %}
+        - {{ target }}
+{% endfor %}
+
+  - job_name: opnsense
+    static_configs:
+      - targets:
+{% for target in opnsense_targets %}
+        - {{ target }}
+{% endfor %}
