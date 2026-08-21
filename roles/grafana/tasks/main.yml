@@ -1,4 +1,16 @@
 ---
+- name: Set grafana_alerting to empty to avoid legacy [alerting] section (removed in Grafana 13.x)
+  ansible.builtin.set_fact:
+    grafana_alerting: {}
+
 - name: Install and configure Grafana via grafana.grafana.grafana
   ansible.builtin.include_role:
     name: grafana.grafana.grafana
+
+- name: Remove legacy [alerting] section (removed in Grafana 13.x)
+  ansible.builtin.replace:
+    path: /etc/grafana/grafana.ini
+    regexp: '# Alerting\n\[alerting\]\n.*(\n.*)?'
+    replace: ''
+  become: true
+  notify: restart_grafana

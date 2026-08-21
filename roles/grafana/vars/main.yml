@@ -6,3 +6,15 @@ grafana_admin_password: !vault |
           66393830653939616637363339363638663834323132626535633333333038663766323865336638
           3061393135613462630a636637363436323262376233396165643264623963623936653265396264
           3564
+
+grafana_security:
+  admin_user: admin
+  admin_password: "{{ grafana_admin_password }}"
+
+grafana_datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: "http://192.168.50.249:9090"
+    isDefault: true
+    editable: false

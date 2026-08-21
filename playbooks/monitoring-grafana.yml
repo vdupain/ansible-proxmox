@@ -2,9 +2,4 @@
 - name: Grafana monitoring playbook
   hosts: monitoring_grafana
   roles:
-    - role: grafana
-      vars:
-        grafana_ini:
-          security:
-            admin_user: admin
-            admin_password: "{{ grafana_admin_password }}"
+    - grafana
