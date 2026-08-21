@@ -3,9 +3,11 @@ proxmox_nodes:
     ansible_user: root
 monitoring_prometheus:
   hosts:
-    192.168.50.249:
+    prometheus:
+      ansible_host: 192.168.50.249
   vars:
-    ansible_user: root
+    ansible_user: debian
+    ansible_become: yes
 
 tag_ubuntu:
   vars:
