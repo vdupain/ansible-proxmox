@@ -1,4 +1,10 @@
 ---
+- name: Build alertmanager_receivers with correct YAML types (int for chat_id)
+  ansible.builtin.set_fact:
+    alertmanager_receivers: >
+      [{"name": "telegram", "telegram_configs": [{"bot_token": "{{ telegram_bot_token }}",
+      "chat_id": {{ telegram_chat_id | int }}, "send_resolved": true}]}]
+
 - name: Include prometheus.prometheus.alertmanager role
   ansible.builtin.include_role:
     name: prometheus.prometheus.alertmanager
