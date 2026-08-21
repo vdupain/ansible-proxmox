@@ -1,6 +1,3 @@
 ---
-alertmanager_receivers:
-  - name: "default"
-    telegram_configs:
-      - bot_token: "placeholder"
-        chat_id: 0
+alertmanager_version: latest
+alertmanager_config_file: ""
