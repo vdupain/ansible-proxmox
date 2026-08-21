@@ -1,0 +1,4 @@
+---
+- name: Install and configure Grafana via grafana.grafana.grafana
+  ansible.builtin.include_role:
+    name: grafana.grafana.grafana

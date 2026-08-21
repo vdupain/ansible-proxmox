@@ -1,2 +1,3 @@
-.vault_password
 .envrc
+.vault_password
+roles/grafana.grafana/
