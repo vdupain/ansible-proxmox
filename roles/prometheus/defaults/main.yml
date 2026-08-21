@@ -14,6 +14,7 @@ pve_node_exporter_targets:
   - pve2:9100
   - pve3:9100
   - pve4:9100
+  - pve5:9100
 pve_exporter_target: pve0
 pve_exporter_endpoint: prometheus-pve-exporter:9221
 scaphandre_targets:
@@ -22,6 +23,7 @@ scaphandre_targets:
   - host: pve2
   - host: pve3
   - host: pve4
+  - host: pve5
 
 # Network
 openwrt_targets:
