@@ -11,6 +11,7 @@ receivers:
         chat_id: {{ telegram_chat_id }}
         parse_mode: 'Markdown'
         message: |
+{% raw %}
           {{ range .Alerts }}
           *{{ .Status | toUpper }}{{ if eq .Status "firing" }} 🔥{{ end }}*
           *Alert:* {{ .Labels.alertname }}
@@ -18,6 +19,7 @@ receivers:
           *Instance:* {{ .Labels.instance }}
           *Description:* {{ .Annotations.description }}
           {{ end }}
+{% endraw %}
 inhibit_rules:
   - source_matchers: [severity="critical"]
     target_matchers: [severity="warning"]
