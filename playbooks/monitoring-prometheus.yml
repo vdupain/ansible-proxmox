@@ -1,0 +1,6 @@
+---
+- name: Monitoring Prometheus Playbook
+  hosts: monitoring_prometheus
+  roles:
+    - prometheus
+    - alertmanager

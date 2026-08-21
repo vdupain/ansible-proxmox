@@ -1,0 +1,19 @@
+# my global config
+global:
+  scrape_interval: {{ prometheus_scrape_interval }}
+  evaluation_interval: {{ prometheus_evaluation_interval }}
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - {{ alertmanager_target }}
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  - rules/*.yml
+
+# Les scrape configs sont désormais chargés depuis des fichiers séparés.
+scrape_config_files:
+  - scrape_configs/*.yml

@@ -1,0 +1,30 @@
+scrape_configs:
+  - job_name: 'snmp_mikrotik_if'
+    static_configs:
+      - targets:
+        - {{ mikrotik_host }}
+    metrics_path: /snmp
+    params:
+      module: [if_mib]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: {{ snmp_exporter_endpoint }}
+
+  - job_name: 'snmp_mikrotik_system'
+    static_configs:
+      - targets:
+        - {{ mikrotik_host }}
+    metrics_path: /snmp
+    params:
+      module: [mikrotik]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: {{ snmp_exporter_endpoint }}

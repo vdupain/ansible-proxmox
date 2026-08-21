@@ -1,0 +1,4 @@
+---
+- name: Include prometheus.prometheus.alertmanager role
+  ansible.builtin.include_role:
+    name: prometheus.prometheus.alertmanager

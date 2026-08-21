@@ -1,0 +1,56 @@
+---
+- name: Include prometheus.prometheus.prometheus role
+  ansible.builtin.include_role:
+    name: prometheus.prometheus.prometheus
+
+- name: Ensure scrap configs directory exists
+  ansible.builtin.file:
+    path: /etc/prometheus/scrape_configs
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: '0755'
+
+- name: Ensure rules directory exists
+  ansible.builtin.file:
+    path: /etc/prometheus/rules
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: '0755'
+
+- name: Copy custom prometheus config
+  ansible.builtin.template:
+    src: prometheus.yml.j2
+    dest: /etc/prometheus/prometheus.yml
+    owner: prometheus
+    group: prometheus
+    mode: '0640'
+  notify: restart prometheus
+
+- name: Copy scrape config files
+  ansible.builtin.template:
+    src: "scrape_configs/{{ item }}"
+    dest: "/etc/prometheus/scrape_configs/{{ item | replace('.j2', '') }}"
+    owner: prometheus
+    group: prometheus
+    mode: '0640'
+  loop:
+    - prometheus.yml.j2
+    - blackbox.yml.j2
+    - hass.yml.j2
+    - mikrotik.yml.j2
+    - network.yml.j2
+    - proxmox.yml.j2
+  notify: restart prometheus
+
+- name: Copy rule files
+  ansible.builtin.copy:
+    src: "rules/{{ item }}"
+    dest: "/etc/prometheus/rules/{{ item }}"
+    owner: prometheus
+    group: prometheus
+    mode: '0640'
+  loop:
+    - prometheus-pve-exporter.yml.disable
+  notify: restart prometheus
