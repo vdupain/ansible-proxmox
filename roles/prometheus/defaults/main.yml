@@ -2,7 +2,7 @@
 # prometheus.yml
 prometheus_scrape_interval: 15s
 prometheus_evaluation_interval: 60s
-alertmanager_target: prometheus-alertmanager:9093
+alertmanager_target: localhost:9093
 
 # Self-scrape
 prometheus_self_target: localhost:9090
