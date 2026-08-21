@@ -45,12 +45,12 @@
   notify: restart prometheus
 
 - name: Copy rule files
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: "rules/{{ item }}"
-    dest: "/etc/prometheus/rules/{{ item | replace('.j2', '') | replace('.disable', '') }}"
+    dest: "/etc/prometheus/rules/{{ item }}"
     owner: prometheus
     group: prometheus
     mode: '0640'
   loop:
-    - prometheus-pve-exporter.yml.j2.disable
+    - prometheus-pve-exporter.yml.disable
   notify: restart prometheus
