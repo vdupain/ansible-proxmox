@@ -3,11 +3,3 @@ grafana_ini_default:
   auth:
     anonymous:
       enabled: false
-
-grafana_datasources:
-  - name: Prometheus
-    type: prometheus
-    access: proxy
-    url: "http://192.168.50.249:9090"
-    isDefault: true
-    editable: false
