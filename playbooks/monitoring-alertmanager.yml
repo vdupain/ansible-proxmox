@@ -1,0 +1,5 @@
+---
+- name: Monitoring Alertmanager
+  hosts: monitoring_prometheus
+  roles:
+    - alertmanager

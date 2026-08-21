@@ -16,13 +16,6 @@ telegram_chat_id: !vault |
           6335303138613736390a616230363664653832353163303036313563316166386665353764363739
           3264
 
-alertmanager_receivers:
-  - name: "telegram"
-    telegram_configs:
-      - bot_token: "{{ telegram_bot_token }}"
-        chat_id: "{{ telegram_chat_id | int }}"
-        send_resolved: true
-
 alertmanager_route:
   group_by: ['alertname']
   group_wait: 30s
