@@ -2,12 +2,3 @@
 - name: Include prometheus.prometheus.alertmanager role
   ansible.builtin.include_role:
     name: prometheus.prometheus.alertmanager
-
-- name: Copy custom alertmanager config
-  ansible.builtin.template:
-    src: alertmanager.yml.j2
-    dest: /etc/alertmanager/alertmanager.yml
-    owner: alertmanager
-    group: alertmanager
-    mode: '0640'
-  notify: restart alertmanager
